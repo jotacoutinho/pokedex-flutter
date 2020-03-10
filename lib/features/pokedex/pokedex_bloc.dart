@@ -33,5 +33,6 @@ class PokedexBloc implements Bloc {
   @override
   void dispose() {
     _controller.close();
+    _showDetail.close();
   }
 }

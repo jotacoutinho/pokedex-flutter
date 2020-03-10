@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_widgets/platform_scaffold.dart';
+import 'package:pokedex/shared/blocs/bloc_provider.dart';
 import 'package:pokedex/features/pokedex/widgets/detail/pokedetail.dart';
 import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
 import 'package:pokedex/features/pokedex/widgets/list/pokelist_controller.dart';
 import 'package:pokedex/features/pokedex/widgets/list/pokelist_screen.dart';
-import 'package:pokedex/shared/blocs/bloc_provider.dart';
 
 class Pokedex extends StatelessWidget {
 
@@ -43,7 +43,7 @@ class Pokedex extends StatelessWidget {
 }  
 
 class PokemonInfoButton extends StatelessWidget {
-  PokedexBloc bloc;
+  final PokedexBloc bloc;
 
   PokemonInfoButton(this.bloc);
 
@@ -67,8 +67,8 @@ class PokemonInfoButton extends StatelessWidget {
 }
 
 class PokedexScreen extends StatelessWidget {
-  PokedexBloc bloc;
-  ScrollController imageListController;
+  final PokedexBloc bloc;
+  final ScrollController imageListController;
 
   PokedexScreen(this.bloc, this.imageListController);
 
@@ -125,42 +125,42 @@ class PokedexHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(   
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 80.0,
-                    width: 80.0,
-                    margin: EdgeInsets.only(bottom: 20.0, left: 40.0, right: 40.0, top: 0.0),
-                    decoration: new BoxDecoration(
-                      border: Border.all(width: 4.0, color: Colors.white, style: BorderStyle.solid),
-                      borderRadius: new BorderRadius.all(Radius.circular(40.0)),
-                      color: Colors.blue)),
-                    Container(
-                      height: 20.0,
-                      width: 20.0,
-                      margin: EdgeInsets.only(top: 10.0, right: 10.0),
-                      decoration: new BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
-                        borderRadius: new BorderRadius.all(Radius.circular(10.0)),
-                        color: Colors.red)),
-                    Container(
-                      height: 20.0,
-                      width: 20.0,
-                      margin: EdgeInsets.only(top: 10.0, right: 10.0),
-                      decoration: new BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
-                        borderRadius: new BorderRadius.all(Radius.circular(10.0)),
-                        color: Colors.yellow)),
-                    Container(
-                      height: 20.0,
-                      width: 20.0,
-                      margin: EdgeInsets.only(top: 10.0),
-                      decoration: new BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
-                        borderRadius: new BorderRadius.all(Radius.circular(10.0)),
-                        color: Colors.green)
-                    )]
-              );
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 80.0,
+          width: 80.0,
+          margin: EdgeInsets.only(bottom: 20.0, left: 40.0, right: 40.0, top: 0.0),
+          decoration: new BoxDecoration(
+            border: Border.all(width: 4.0, color: Colors.white, style: BorderStyle.solid),
+            borderRadius: new BorderRadius.all(Radius.circular(40.0)),
+            color: Colors.blue)),
+        Container(
+          height: 20.0,
+          width: 20.0,
+          margin: EdgeInsets.only(top: 10.0, right: 10.0),
+          decoration: new BoxDecoration(
+            border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
+            borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+            color: Colors.red)),
+        Container(
+          height: 20.0,
+          width: 20.0,
+          margin: EdgeInsets.only(top: 10.0, right: 10.0),
+          decoration: new BoxDecoration(
+            border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
+            borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+            color: Colors.yellow)),
+        Container(
+          height: 20.0,
+          width: 20.0,
+          margin: EdgeInsets.only(top: 10.0),
+          decoration: new BoxDecoration(
+            border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
+            borderRadius: new BorderRadius.all(Radius.circular(10.0)),
+            color: Colors.green)
+        )]
+    );
   }
 }

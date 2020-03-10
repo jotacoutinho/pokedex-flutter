@@ -4,8 +4,8 @@ import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
 import 'package:pokedex/models/pokemon.dart';
 
 class PokelistScreen extends StatelessWidget {
-  PokedexBloc _bloc;
-  ScrollController _controller;
+  final PokedexBloc _bloc;
+  final ScrollController _controller;
 
   PokelistScreen(this._bloc, this._controller);
 
