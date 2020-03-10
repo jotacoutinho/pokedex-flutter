@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_widgets/platform_scaffold.dart';
-import 'package:pokedex/features/pokelist/pokelist_bloc.dart';
+import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
 import 'package:pokedex/models/pokemon.dart';
 import 'package:pokedex/shared/blocs/bloc_provider.dart';
 
-class Pokelist extends StatelessWidget {
+class Pokedex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = PokelistBloc();
+    final bloc = PokedexBloc();
     int _currentSelectedPokemon = 0;
     double _itemSize = 67.0;
     double _imageSize = 250.0;
@@ -31,7 +31,7 @@ class Pokelist extends StatelessWidget {
       _imageListController.animateTo(imageOffset, duration: Duration(milliseconds: 100), curve: Curves.linear);
     }
 
-    return BlocProvider<PokelistBloc>(
+    return BlocProvider<PokedexBloc>(
       bloc: bloc,
       child: PlatformScaffold(
         child: Container(
@@ -77,20 +77,7 @@ class Pokelist extends StatelessWidget {
                         color: Colors.green)
                     )]
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    child: _buildCurrentPokemonImage(_currentSelectedPokemon, _imageListController),
-                    margin: EdgeInsets.only(top: 10.0),
-                    height: 250.0,
-                    width: 250.0,
-                    decoration: new BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
-                        borderRadius: new BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0), bottomRight: Radius.circular(10.0), bottomLeft: Radius.circular(50.0)),
-                        color: Colors.lightBlueAccent)
-                  )] 
-              ),
+              _pokedexScreen(bloc, _currentSelectedPokemon, _imageListController),
               Container(
                 height: 50.0,
                 alignment: Alignment.centerLeft,
@@ -101,7 +88,7 @@ class Pokelist extends StatelessWidget {
                     iconSize: 50.0,
                     color: Colors.black,
                     onPressed: () {
-                      // TODO show detail
+                      bloc.toggleShowDetail();
                     }
                   )
               ),
@@ -152,6 +139,46 @@ class Pokelist extends StatelessWidget {
     );
   } 
 
+  Widget _pokedexScreen(PokedexBloc bloc, int currentSelectedPokemon, ScrollController imageListController) {
+    bloc.toggleShowDetail();
+    
+    return StreamBuilder<bool>(
+      stream: bloc.detailStream,
+      builder: (context, snapshot) {
+      final shouldShowDetail = snapshot.data;
+      if(shouldShowDetail) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              height: 250.0,
+              width: 250.0,
+              decoration: new BoxDecoration(
+                  border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0), bottomRight: Radius.circular(10.0), bottomLeft: Radius.circular(50.0)),
+                  color: Colors.lightBlueAccent)
+            )] 
+        );   
+      } else {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: _buildCurrentPokemonImage(currentSelectedPokemon, imageListController),
+              margin: EdgeInsets.only(top: 10.0),
+              height: 250.0,
+              width: 250.0,
+              decoration: new BoxDecoration(
+                  border: Border.all(width: 1.0, color: Colors.black, style: BorderStyle.solid),
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0), bottomRight: Radius.circular(10.0), bottomLeft: Radius.circular(50.0)),
+                  color: Colors.lightBlueAccent)
+            )] 
+        );   
+      } 
+    });
+  }
+
   Widget _buildCurrentPokemonImage(int index, ScrollController controller) {
     return IgnorePointer(
       child: ListView.builder(
@@ -171,11 +198,11 @@ class Pokelist extends StatelessWidget {
     );
   }
 
-  Widget _buildPokelist(PokelistBloc bloc, ScrollController controller, int currentSelectedPokemon) {
+  Widget _buildPokelist(PokedexBloc bloc, ScrollController controller, int currentSelectedPokemon) {
     bloc.fetch();
 
     return StreamBuilder<List<Pokemon>>(
-      stream: bloc.pokelistStream,
+      stream: bloc.pokedexStream,
       builder: (context, snapshot) {
         final list = snapshot.data;
         if (list == null) {

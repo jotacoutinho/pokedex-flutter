@@ -3,7 +3,7 @@ import 'dart:convert' show json;
 import 'package:pokedex/Network/api_service.dart';
 import 'package:pokedex/models/pokemon.dart';
 
-class PokelistService {
+class PokedexService {
   ApiService api = ApiService();
   String _getPokemonList = 'pokemon?limit=151';
 
