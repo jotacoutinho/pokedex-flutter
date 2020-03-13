@@ -22,7 +22,6 @@ class PokedexService {
   Future<PokemonDetailObject> fetchPokemonDetail(int index) async {
     String response = await api.fetchData(_getPokemonDetail + index.toString());
     PokemonDetailObject pokemonDetail = _parsePokemonDetail(response);
-    _parsePokemonDetail(response);
 
     if (pokemonDetail != null) {
       return pokemonDetail;

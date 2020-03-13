@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_widgets/platform_scaffold.dart';
-import 'package:pokedex/Scenes/Pokedex/DataLayer/pokemon.dart';
 import 'package:pokedex/shared/blocs/bloc_provider.dart';
 import 'package:pokedex/Scenes/Pokedex/UI/detail/pokedetail_screen.dart';
 import 'package:pokedex/Scenes/Pokedex/BLoC/pokedex_bloc.dart';
@@ -83,7 +82,7 @@ class PokedexDisplay extends StatelessWidget {
       builder: (context, snapshot) {
       final showDetail = snapshot.data;
       if(showDetail) {
-         return Pokedetail();
+         return Pokedetail(bloc.currentSelectedPokemon);
       } else {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
