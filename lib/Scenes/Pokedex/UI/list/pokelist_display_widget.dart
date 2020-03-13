@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
-import 'package:pokedex/models/pokemon.dart';
+import 'package:pokedex/Scenes/Pokedex/BLoC/pokedex_bloc.dart';
+import 'package:pokedex/Scenes/Pokedex/DataLayer/pokemon.dart';
 
-class PokelistScreen extends StatelessWidget {
+class PokelistDisplay extends StatelessWidget {
   final PokedexBloc _bloc;
   final ScrollController _controller;
 
-  PokelistScreen(this._bloc, this._controller);
+  PokelistDisplay(this._bloc, this._controller);
 
   @override
   Widget build(BuildContext context) {

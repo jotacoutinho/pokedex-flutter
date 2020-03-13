@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_widgets/base/platform_app.dart';
 import 'package:platform_widgets/base/platform_theme.dart';
-import 'package:pokedex/features/pokedex/pokedex.dart';
+import 'package:pokedex/Scenes/Pokedex/UI/pokedex_screen.dart';
 
 void main() => runApp(MyApp());
 

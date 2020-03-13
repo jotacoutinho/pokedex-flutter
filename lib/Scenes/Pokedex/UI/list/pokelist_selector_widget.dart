@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
+import 'package:pokedex/Scenes/Pokedex/BLoC/pokedex_bloc.dart';
 
-class PokelistController extends StatelessWidget {
+class PokelistSelector extends StatelessWidget {
   double _itemSize = 67.0;
   double _imageSize = 250.0;
   PokedexBloc _bloc;
   ScrollController _pokelistController;
   ScrollController _imageListController;
 
-  PokelistController(this._bloc, this._pokelistController, this._imageListController);
+  PokelistSelector(this._bloc, this._pokelistController, this._imageListController);
 
   @override
   Widget build(BuildContext context) {

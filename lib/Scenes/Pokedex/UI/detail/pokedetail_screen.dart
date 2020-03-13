@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_widgets/platform_scaffold.dart';
-import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
-import 'package:pokedex/models/pokemon.dart';
-import 'package:pokedex/shared/blocs/bloc_provider.dart';
+import 'package:pokedex/Scenes/Pokedex/BLoC/pokedex_bloc.dart';
+import 'package:pokedex/Scenes/Pokedex/DataLayer/pokemon.dart';
 
 class Pokedetail extends StatelessWidget {
   final _index = 0;
+  final bloc = PokedexBloc();
+
+  // Pokedetail(this.detail);
 
   @override
   Widget build(BuildContext context) {

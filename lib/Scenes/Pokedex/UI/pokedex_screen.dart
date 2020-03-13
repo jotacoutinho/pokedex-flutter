@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_widgets/platform_scaffold.dart';
+import 'package:pokedex/Scenes/Pokedex/DataLayer/pokemon.dart';
 import 'package:pokedex/shared/blocs/bloc_provider.dart';
-import 'package:pokedex/features/pokedex/widgets/detail/pokedetail.dart';
-import 'package:pokedex/features/pokedex/pokedex_bloc.dart';
-import 'package:pokedex/features/pokedex/widgets/list/pokelist_controller.dart';
-import 'package:pokedex/features/pokedex/widgets/list/pokelist_screen.dart';
+import 'package:pokedex/Scenes/Pokedex/UI/detail/pokedetail_screen.dart';
+import 'package:pokedex/Scenes/Pokedex/BLoC/pokedex_bloc.dart';
+import 'package:pokedex/Scenes/Pokedex/UI/list/pokelist_selector_widget.dart';
+import 'package:pokedex/Scenes/Pokedex/UI/list/pokelist_display_widget.dart';
 
 class Pokedex extends StatelessWidget {
 
@@ -24,15 +25,15 @@ class Pokedex extends StatelessWidget {
           child: Column(
             children: [
               PokedexHeader(),
-              PokedexScreen(bloc, _imageListController),
+              PokedexDisplay(bloc, _imageListController),
               PokemonInfoButton(bloc),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     children: [
-                      PokelistScreen(bloc, _pokelistController),
-                      PokelistController(bloc, _pokelistController, _imageListController)]
+                      PokelistDisplay(bloc, _pokelistController),
+                      PokelistSelector(bloc, _pokelistController, _imageListController)]
                   )] 
               )],
           )
@@ -66,21 +67,22 @@ class PokemonInfoButton extends StatelessWidget {
   }
 }
 
-class PokedexScreen extends StatelessWidget {
+class PokedexDisplay extends StatelessWidget {
   final PokedexBloc bloc;
   final ScrollController imageListController;
 
-  PokedexScreen(this.bloc, this.imageListController);
+  PokedexDisplay(this.bloc, this.imageListController);
 
   @override
   Widget build(BuildContext context) {
+    // Triggering show detail to add value to stream (true -> false), making detail hidden at init
     bloc.toggleShowDetail();
     
     return StreamBuilder<bool>(
-      stream: bloc.detailStream,
+      stream: bloc.showDetailStream,
       builder: (context, snapshot) {
-      final shouldShowDetail = snapshot.data;
-      if(shouldShowDetail) {
+      final showDetail = snapshot.data;
+      if(showDetail) {
          return Pokedetail();
       } else {
         return Row(
