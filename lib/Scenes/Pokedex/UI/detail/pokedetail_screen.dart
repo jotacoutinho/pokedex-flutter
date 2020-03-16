@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/Scenes/Pokedex/BLoC/pokedetail_bloc.dart';
 import 'package:pokedex/Scenes/Pokedex/DataLayer/pokemon.dart';
+import 'dart:io' show Platform;
 
 class Pokedetail extends StatelessWidget {
   final _index;
@@ -85,12 +86,12 @@ class PokemonStats extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(child: Text("HP: ${stats[5].base_stat}"), padding: EdgeInsets.only(top: 1.0, left: 2.0)),
-                Container(child: Text("Attack: ${stats[4].base_stat}"), padding: EdgeInsets.only(left: 2.0)),
-                Container(child: Text("Defense: ${stats[3].base_stat}"), padding: EdgeInsets.only(left: 2.0)),
-                Container(child: Text("Sp. Atk: ${stats[2].base_stat}"), padding: EdgeInsets.only(left: 2.0)),
-                Container(child: Text("Sp. Def: ${stats[1].base_stat}"), padding: EdgeInsets.only(left: 2.0)),
-                Container(child: Text("Speed: ${stats[0].base_stat}"), padding: EdgeInsets.only(left: 2.0, bottom: 1.0)),
+                Container(child: Text("HP: ${stats[5].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(top: 1.0, left: 2.0)),
+                Container(child: Text("Attack: ${stats[4].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(left: 2.0)),
+                Container(child: Text("Defense: ${stats[3].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(left: 2.0)),
+                Container(child: Text("Sp. Atk: ${stats[2].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(left: 2.0)),
+                Container(child: Text("Sp. Def: ${stats[1].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(left: 2.0)),
+                Container(child: Text("Speed: ${stats[0].base_stat}", style: TextStyle(fontSize: Platform.isAndroid? 14.0 : 13.0)), padding: EdgeInsets.only(left: 2.0, bottom: 1.0)),
               ],
             )
           ), 

@@ -20,17 +20,21 @@ class PokelistSelector extends StatelessWidget {
         child: Row(
           children: [Column(
             children: [
-              IconButton(
-                icon: Icon(Icons.arrow_drop_up),
-                iconSize: 75.0,
-                color: Colors.black,
+              FlatButton.icon(
+                label: Text(""),
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                icon: Icon(Icons.arrow_drop_up, size: 75.0),
+                color: Colors.red,
                 onPressed: () {
                   _seekPokemonList(false);
                 }),
-              IconButton(
-                icon: Icon(Icons.arrow_drop_down),
-                iconSize: 75.0,
-                color: Colors.black,
+              FlatButton.icon(
+                label: Text(""),
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                icon: Icon(Icons.arrow_drop_down, size: 75.0),
+                color: Colors.red,
                 onPressed: () {
                   _seekPokemonList(true);
                 }),

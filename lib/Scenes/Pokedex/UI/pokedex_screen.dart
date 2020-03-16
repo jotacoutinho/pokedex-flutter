@@ -54,10 +54,12 @@ class PokemonInfoButton extends StatelessWidget {
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.only(left: 20.0),
       child: 
-        IconButton(
-          icon: Icon(Icons.info),
-          iconSize: 50.0,
-          color: Colors.black,
+        FlatButton.icon(
+          label: Text(""),
+          icon: Icon(Icons.info, size: 50.0,),
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          color: Colors.red,
           onPressed: () {
             bloc.toggleShowDetail();
           }
